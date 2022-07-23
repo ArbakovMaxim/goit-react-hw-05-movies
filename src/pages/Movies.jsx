@@ -1,6 +1,6 @@
 import { Link, Outlet } from 'react-router-dom';
 
-export const About = () => {
+export const Movies = () => {
   return (
     <div>
       <h1>About page</h1>
