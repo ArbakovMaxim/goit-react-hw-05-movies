@@ -1,14 +1,20 @@
 import { Outlet } from 'react-router-dom';
 import { Container } from 'ui/Container.styled';
-import { StyledLink, Header } from './Header.styled';
+import { StyledLink, Header, HeaderList } from './Header.styled';
 
 export const HeaderHome = () => {
   return (
     <Container>
       <Header>
         <nav>
-          <StyledLink to="/">Home</StyledLink>
-          <StyledLink to="/movies">Movies</StyledLink>
+          <HeaderList>
+            <li>
+              <StyledLink to="/">Home</StyledLink>
+            </li>
+            <li>
+              <StyledLink to="/movies">Movies</StyledLink>
+            </li>
+          </HeaderList>
         </nav>
       </Header>
       <Outlet />
