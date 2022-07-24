@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, Outlet, useParams } from 'react-router-dom';
 import { Api } from 'services/Api';
 import { constantsApi } from 'services/constans';
 import {
@@ -20,7 +20,6 @@ export const FilmInfo = () => {
         const movies = await Api.get(`${constantsApi.GET_ONE_MOVIE_URL}/${id}`);
         if (movies) {
           setMoviesInfo(movies.data);
-          console.log(movies.data);
         }
       } catch (error) {
         console.log(error);
@@ -54,13 +53,14 @@ export const FilmInfo = () => {
             <h3>Additional information</h3>
             <ul>
               <li>
-                <Link to={`/movies/${id}`}>Cast</Link>
+                <Link to="cast">Cast</Link>
               </li>
               <li>
-                <Link to={`/movies/${id}`}>Reviews</Link>
+                <Link to="reviews">Reviews</Link>
               </li>
             </ul>
           </WraperAdditionalInformation>
+          <Outlet />
         </>
       )}
     </div>

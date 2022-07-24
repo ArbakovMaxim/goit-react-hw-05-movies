@@ -4,5 +4,6 @@ export const constantsApi = {
   SEARCH_URL: `search/movie/`,
   TRENDING_URL: `trending/movie/day`,
   GET_ONE_MOVIE_URL: `movie`,
-  MOVIE_GENRES_URL: 'genre/movie/list',
+  MOVIE_REVIEWS_URL: 'reviews',
+  MOVIE_ACTOR_URL: 'credits',
 };
