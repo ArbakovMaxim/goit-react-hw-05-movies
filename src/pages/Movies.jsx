@@ -1,20 +1,28 @@
-import { Link, Outlet } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Outlet, useParams } from 'react-router-dom';
+import { Api } from 'services/Api';
 
 export const Movies = () => {
+  const { id } = useParams();
+  const [moviesInfo, setMoviesInfo] = useState([]);
+
+  useEffect(() => {
+    const fetchMovies = async () => {
+      try {
+        const movies = await Api.get(id);
+        if (movies) {
+          setMoviesInfo(movies);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchMovies();
+  }, [id]);
+
   return (
     <div>
-      <h1>About page</h1>
-      <ul>
-        <li>
-          <Link to="mission">Read about our mission</Link>
-        </li>
-        <li>
-          <Link to="team">Get to know the team</Link>
-        </li>
-        <li>
-          <Link to="reviews">Go through the reviews</Link>
-        </li>
-      </ul>
+      <img src={`${moviesInfo.backdrop_path}`} alt={`${moviesInfo.title}`} />
       <Outlet />
     </div>
   );
