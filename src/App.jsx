@@ -3,8 +3,8 @@ import { HeaderHome } from 'components/Header/Header';
 import { Movies } from 'pages/Movies';
 import { Home } from 'pages/Home';
 import { FilmInfo } from 'pages/FilmInfo/FilmInfo';
-import { Cast } from 'pages/MovieDetails/Cast/Cast';
-import { Reviews } from 'pages/MovieDetails/Reviews/Reviews';
+import { Cast } from 'components/Cast/Cast';
+import { Reviews } from 'components/Reviews/Reviews';
 /* import { useEffect, useState } from 'react';
 import { apiImage } from 'services/Api'; */
 

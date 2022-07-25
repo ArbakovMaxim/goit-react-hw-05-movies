@@ -1,10 +1,13 @@
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Api } from 'services/Api';
 import { constantsApi } from 'services/constans';
 
 export const Home = () => {
   const [moviesTrend, setMoviesTrend] = useState([]);
+  const location = useLocation();
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -14,7 +17,7 @@ export const Home = () => {
           setMoviesTrend(movies.data.results);
         }
       } catch (error) {
-        console.log(error);
+        toast.info(error);
       }
     };
     fetchMovies();
@@ -27,11 +30,14 @@ export const Home = () => {
         <ul>
           {moviesTrend.map(({ id, title }) => (
             <li key={id}>
-              <Link to={`/movies/${id}`}>{title}</Link>
+              <Link to={`/movies/${id}`} state={{ from: location }}>
+                {title}
+              </Link>
             </li>
           ))}
         </ul>
       }
+      <ToastContainer />
     </div>
   );
 };
