@@ -5,8 +5,6 @@ import { Home } from 'pages/Home';
 import { FilmInfo } from 'pages/FilmInfo/FilmInfo';
 import { Cast } from 'components/Cast/Cast';
 import { Reviews } from 'components/Reviews/Reviews';
-/* import { useEffect, useState } from 'react';
-import { apiImage } from 'services/Api'; */
 
 export const App = () => {
   return (
