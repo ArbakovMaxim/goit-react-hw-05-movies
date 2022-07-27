@@ -3,7 +3,9 @@ import { ToastContainer, toast } from 'react-toastify';
 import { useEffect, useState } from 'react';
 import { constantsApi } from '../services/constans';
 import { Api } from 'services/Api';
-import { Link, useLocation, useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
+import { ListSearchFilm } from 'components/ListSearchFilm/ListSearchFilm';
+import { SearchForm } from 'components/SearchForm/SearchForm';
 
 export const Movies = () => {
   const [searchMovies, setsearchMovies] = useState([]);
@@ -22,6 +24,9 @@ export const Movies = () => {
   };
 
   const fetchMovies = async () => {
+    if (searchUrl === '') {
+      return;
+    }
     try {
       const movies = await Api.get(constantsApi.SEARCH_URL, {
         params: getDataMoviesParams,
@@ -40,34 +45,20 @@ export const Movies = () => {
     }
   };
 
-  const handleSubmit = e => {
-    e.preventDefault();
-  };
-
-  const handleChange = e => {
-    setSearchParams(e.target.value !== '' ? { search: e.target.value } : {});
+  const handleSubmit = ({ searchMoviesInput }) => {
+    setSearchParams(
+      searchMoviesInput !== '' ? { search: searchMoviesInput } : {}
+    );
+    fetchMovies();
   };
 
   return (
     <>
       <div>
-        <form onSubmit={handleSubmit}>
-          <input onChange={handleChange} value={searchUrl} />
-          <button onClick={() => fetchMovies()}>Search</button>
-        </form>
+        <SearchForm submit={handleSubmit} />
       </div>
       <div>
-        {
-          <ul>
-            {searchMovies.map(({ id, title }) => (
-              <li key={id}>
-                <Link to={`/movies/${id}`} state={{ from: location }}>
-                  {title}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        }
+        <ListSearchFilm searchMovies={searchMovies} location={location} />
       </div>
       <ToastContainer />
     </>

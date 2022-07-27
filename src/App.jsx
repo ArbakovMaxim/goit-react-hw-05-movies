@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import { HeaderHome } from 'components/Header/Header';
+import { Layout } from 'Layout/Layout';
 import { Movies } from 'pages/Movies';
 import { Home } from 'pages/Home';
 import { FilmInfo } from 'pages/FilmInfo/FilmInfo';
@@ -9,7 +9,7 @@ import { Reviews } from 'components/Reviews/Reviews';
 export const App = () => {
   return (
     <Routes>
-      <Route path="/" element={<HeaderHome />}>
+      <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="/movies" element={<Movies />} />
         <Route path="/movies/:id" element={<FilmInfo />}>
@@ -17,7 +17,7 @@ export const App = () => {
           <Route path="reviews" element={<Reviews />} />
         </Route>
       </Route>
-      <Route path="*" element={<HeaderHome />} />
+      <Route path="*" element={<Layout />} />
     </Routes>
   );
 };
