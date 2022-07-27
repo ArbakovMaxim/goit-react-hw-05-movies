@@ -25,7 +25,7 @@ export const FilmInfo = () => {
 
     const fetchMovies = async () => {
       try {
-        const movies = await Api.get(`${constantsApi.GET_ONE_MOVIE_URL}${id}`);
+        const movies = await Api.get(`${constantsApi.GET_ONE_MOVIE_URL}/${id}`);
         if (movies) {
           setMoviesInfo(movies.data);
         }
