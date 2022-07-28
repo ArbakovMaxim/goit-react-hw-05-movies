@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 export const Poster = styled.img`
   width: 300px;
@@ -22,4 +23,26 @@ export const GanresFilm = styled.span`
 export const WraperAdditionalInformation = styled.div`
   padding-bottom: 16px;
   border-bottom: 1px solid black;
+`;
+
+export const Btn = styled(NavLink)`
+  padding: 8px;
+  background-color: blue;
+  color: white;
+  text-decoration: none;
+`;
+
+export const Wraper = styled.div`
+  margin-top: 16px;
+`;
+
+export const LinkFilmSInfo = styled(NavLink)`
+  text-decoration: none;
+  &:hover {
+    color: green;
+  }
+`;
+
+export const ListFilmInfo = styled.ul`
+  list-style: none;
 `;

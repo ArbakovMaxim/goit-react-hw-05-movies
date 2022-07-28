@@ -1,7 +1,7 @@
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import { useEffect, useState } from 'react';
-import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
+import { Outlet, useLocation, useParams } from 'react-router-dom';
 import * as api from 'services/Api';
 import {
   Poster,
@@ -9,6 +9,10 @@ import {
   WraperInfoFilm,
   GanresFilm,
   WraperAdditionalInformation,
+  Btn,
+  Wraper,
+  LinkFilmSInfo,
+  ListFilmInfo,
 } from './FilmInfo.styled';
 
 export const FilmInfo = () => {
@@ -35,8 +39,8 @@ export const FilmInfo = () => {
 
   return (
     <>
-      <Link to={saveLocation}> Back </Link>
-      <div>
+      <Btn to={saveLocation}> Back </Btn>
+      <Wraper>
         {moviesInfo.poster_path && (
           <>
             <WraperInfo>
@@ -56,19 +60,19 @@ export const FilmInfo = () => {
             </WraperInfo>
             <WraperAdditionalInformation>
               <h3>Additional information</h3>
-              <ul>
+              <ListFilmInfo>
                 <li>
-                  <Link to="cast">Cast</Link>
+                  <LinkFilmSInfo to="cast">Cast</LinkFilmSInfo>
                 </li>
                 <li>
-                  <Link to="reviews">Reviews</Link>
+                  <LinkFilmSInfo to="reviews">Reviews</LinkFilmSInfo>
                 </li>
-              </ul>
+              </ListFilmInfo>
             </WraperAdditionalInformation>
             <Outlet />
           </>
         )}
-      </div>
+      </Wraper>
       <ToastContainer />
     </>
   );

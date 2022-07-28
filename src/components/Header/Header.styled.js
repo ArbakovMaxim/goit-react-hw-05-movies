@@ -7,6 +7,10 @@ export const StyledLink = styled(NavLink)`
   color: black;
   text-decoration: none;
 
+  &:hover {
+    color: green;
+  }
+
   &.active {
     color: orange;
   }

@@ -1,15 +1,19 @@
-import { Link } from 'react-router-dom';
+import {
+  ItemFilmStyled,
+  ItemLinkFilmStyled,
+  ListFilmStyled,
+} from './ListFilm.Styled';
 
 export const ListFilm = ({ movies, location }) => {
   return (
-    <ul>
+    <ListFilmStyled>
       {movies.map(({ id, title }) => (
-        <li key={id}>
-          <Link to={`/movies/${id}`} state={{ from: location }}>
+        <ItemFilmStyled key={id}>
+          <ItemLinkFilmStyled to={`/movies/${id}`} state={{ from: location }}>
             {title}
-          </Link>
-        </li>
+          </ItemLinkFilmStyled>
+        </ItemFilmStyled>
       ))}
-    </ul>
+    </ListFilmStyled>
   );
 };
