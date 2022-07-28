@@ -2,8 +2,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Api } from 'services/Api';
-import { constantsApi } from 'services/constans';
+import * as api from 'services/Api';
 import { ListFilm } from 'components/ListFilm/ListFilm';
 
 export const Home = () => {
@@ -13,7 +12,7 @@ export const Home = () => {
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        const movies = await Api.get(constantsApi.TRENDING_URL);
+        const movies = await api.getMoviesTrending();
         if (movies) {
           setMoviesTrend(movies.data.results);
         }

@@ -1,8 +1,7 @@
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 import { useEffect, useState } from 'react';
-import { constantsApi } from '../services/constans';
-import { Api } from 'services/Api';
+import * as api from 'services/Api';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { SearchForm } from 'components/SearchForm/SearchForm';
 import { ListFilm } from 'components/ListFilm/ListFilm';
@@ -19,18 +18,11 @@ export const Movies = () => {
   }, []);
 
   const fetchMovies = async searchInput => {
-    const getDataMoviesParams = {
-      query: searchInput,
-      api_key: constantsApi.API_KEY,
-    };
-
     if (searchInput === '') {
       return;
     }
     try {
-      const movies = await Api.get(constantsApi.SEARCH_URL, {
-        params: getDataMoviesParams,
-      });
+      const movies = await api.getSearchMovies(searchInput);
 
       if (movies) {
         setsearchMovies(movies.data.results);

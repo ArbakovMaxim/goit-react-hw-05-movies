@@ -3,8 +3,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { Api } from 'services/Api';
-import { constantsApi } from 'services/constans';
+import * as api from 'services/Api';
 
 export const Reviews = () => {
   const [MoviesInfoAuthors, setMoviesInfoAuthors] = useState([]);
@@ -13,9 +12,7 @@ export const Reviews = () => {
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        const author = await Api.get(
-          `movie/${id}/${constantsApi.MOVIE_REVIEWS_URL}`
-        );
+        const author = await api.getMoviesReviews(id);
         if (author) {
           setMoviesInfoAuthors(author.data.results);
         }

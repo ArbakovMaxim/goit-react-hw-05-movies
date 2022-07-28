@@ -2,8 +2,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 import { useEffect, useState } from 'react';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
-import { Api } from 'services/Api';
-import { constantsApi } from 'services/constans';
+import * as api from 'services/Api';
 import {
   Poster,
   WraperInfo,
@@ -25,7 +24,7 @@ export const FilmInfo = () => {
 
     const fetchMovies = async () => {
       try {
-        const movies = await Api.get(`${constantsApi.GET_ONE_MOVIE_URL}/${id}`);
+        const movies = await api.getMoviesInfo(id);
         if (movies) {
           setMoviesInfo(movies.data);
         }

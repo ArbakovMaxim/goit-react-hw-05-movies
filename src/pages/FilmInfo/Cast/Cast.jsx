@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { Api } from 'services/Api';
-import { constantsApi } from 'services/constans';
+import * as api from 'services/Api';
 import { ImgActor, ItemsActor, ListActor } from './Cast.styled';
 
 export const Cast = () => {
@@ -12,9 +11,7 @@ export const Cast = () => {
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        const actor = await Api.get(
-          `movie/${id}/${constantsApi.MOVIE_ACTOR_URL}`
-        );
+        const actor = await api.getMoviesCast(id);
         if (actor) {
           setMoviesInfoActors(actor.data.cast);
         }
