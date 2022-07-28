@@ -30,6 +30,10 @@ export const Btn = styled(NavLink)`
   background-color: blue;
   color: white;
   text-decoration: none;
+  &:hover {
+    color: green;
+    background-color: orange;
+  }
 `;
 
 export const Wraper = styled.div`
