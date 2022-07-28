@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react';
 import { constantsApi } from '../services/constans';
 import { Api } from 'services/Api';
 import { useLocation, useSearchParams } from 'react-router-dom';
-import { ListSearchFilm } from 'components/ListSearchFilm/ListSearchFilm';
 import { SearchForm } from 'components/SearchForm/SearchForm';
+import { ListFilm } from 'components/ListFilm/ListFilm';
 
 export const Movies = () => {
   const [searchMovies, setsearchMovies] = useState([]);
@@ -14,17 +14,17 @@ export const Movies = () => {
   const searchUrl = searchParams.get('search') ?? '';
 
   useEffect(() => {
-    searchUrl && fetchMovies();
+    searchUrl && fetchMovies(searchUrl);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const getDataMoviesParams = {
-    query: searchUrl,
-    api_key: constantsApi.API_KEY,
-  };
+  const fetchMovies = async searchInput => {
+    const getDataMoviesParams = {
+      query: searchInput,
+      api_key: constantsApi.API_KEY,
+    };
 
-  const fetchMovies = async () => {
-    if (searchUrl === '') {
+    if (searchInput === '') {
       return;
     }
     try {
@@ -49,7 +49,7 @@ export const Movies = () => {
     setSearchParams(
       searchMoviesInput !== '' ? { search: searchMoviesInput } : {}
     );
-    fetchMovies();
+    fetchMovies(searchMoviesInput);
   };
 
   return (
@@ -58,7 +58,7 @@ export const Movies = () => {
         <SearchForm submit={handleSubmit} />
       </div>
       <div>
-        <ListSearchFilm searchMovies={searchMovies} location={location} />
+        <ListFilm movies={searchMovies} location={location} />
       </div>
       <ToastContainer />
     </>

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Api } from 'services/Api';
 import { constantsApi } from 'services/constans';
-import { TrendingFilm } from 'components/TrendingFilm/TrendingFilm';
+import { ListFilm } from 'components/ListFilm/ListFilm';
 
 export const Home = () => {
   const [moviesTrend, setMoviesTrend] = useState([]);
@@ -27,7 +27,7 @@ export const Home = () => {
   return (
     <div>
       <h1>Trending today</h1>
-      <TrendingFilm moviesTrend={moviesTrend} location={location} />
+      <ListFilm movies={moviesTrend} location={location} />
       <ToastContainer />
     </div>
   );
