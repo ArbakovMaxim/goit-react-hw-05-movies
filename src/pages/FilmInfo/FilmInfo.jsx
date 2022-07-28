@@ -1,5 +1,5 @@
 import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import { useEffect, useState } from 'react';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import * as api from 'services/Api';
@@ -23,13 +23,9 @@ export const FilmInfo = () => {
     }
 
     const fetchMovies = async () => {
-      try {
-        const movies = await api.getMoviesInfo(id);
-        if (movies) {
-          setMoviesInfo(movies.data);
-        }
-      } catch (error) {
-        toast.info(error);
+      const movies = await api.getMoviesInfo(id);
+      if (movies) {
+        setMoviesInfo(movies.data);
       }
     };
     fetchMovies();

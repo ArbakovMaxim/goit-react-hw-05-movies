@@ -21,19 +21,15 @@ export const Movies = () => {
     if (searchInput === '') {
       return;
     }
-    try {
-      const movies = await api.getSearchMovies(searchInput);
+    const movies = await api.getSearchMovies(searchInput);
 
-      if (movies) {
-        setsearchMovies(movies.data.results);
-      }
-      if (movies.data.results.length === 0) {
-        toast.info(
-          'по вашему запросу не чего не найденно,ищите что-то адекватное. '
-        );
-      }
-    } catch (error) {
-      toast.info(error);
+    if (movies) {
+      setsearchMovies(movies);
+    }
+    if (movies.length === 0) {
+      toast.info(
+        'по вашему запросу не чего не найденно,ищите что-то адекватное. '
+      );
     }
   };
 

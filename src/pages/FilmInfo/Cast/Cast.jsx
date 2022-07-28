@@ -10,13 +10,9 @@ export const Cast = () => {
 
   useEffect(() => {
     const fetchMovies = async () => {
-      try {
-        const actor = await api.getMoviesCast(id);
-        if (actor) {
-          setMoviesInfoActors(actor.data.cast);
-        }
-      } catch (error) {
-        console.log(error);
+      const actor = await api.getMoviesCast(id);
+      if (actor) {
+        setMoviesInfoActors(actor);
       }
     };
     fetchMovies();

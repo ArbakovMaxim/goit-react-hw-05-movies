@@ -1,5 +1,5 @@
 import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
@@ -11,13 +11,9 @@ export const Reviews = () => {
 
   useEffect(() => {
     const fetchMovies = async () => {
-      try {
-        const author = await api.getMoviesReviews(id);
-        if (author) {
-          setMoviesInfoAuthors(author.data.results);
-        }
-      } catch (error) {
-        toast.info(error);
+      const author = await api.getMoviesReviews(id);
+      if (author) {
+        setMoviesInfoAuthors(author);
       }
     };
     fetchMovies();
