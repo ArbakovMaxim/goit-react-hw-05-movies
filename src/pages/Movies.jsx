@@ -1,19 +1,21 @@
 import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { useEffect, useState } from 'react';
 import * as api from 'services/Api';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { SearchForm } from 'components/SearchForm/SearchForm';
 import { ListFilm } from 'components/ListFilm/ListFilm';
 
-export const Movies = () => {
+const Movies = () => {
   const [searchMovies, setsearchMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
-  const searchUrl = searchParams.get('search') ?? '';
 
   useEffect(() => {
-    searchUrl && fetchMovies(searchUrl);
+    const searchUrl = searchParams.get('search') ?? '';
+    if (searchUrl) {
+      fetchMovies(searchUrl);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -48,7 +50,8 @@ export const Movies = () => {
       <div>
         <ListFilm movies={searchMovies} location={location} />
       </div>
-      <ToastContainer />
     </>
   );
 };
+
+export default Movies;

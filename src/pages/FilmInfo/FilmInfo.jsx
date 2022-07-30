@@ -1,21 +1,13 @@
 import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer } from 'react-toastify';
 import { useEffect, useState } from 'react';
 import { Outlet, useLocation, useParams } from 'react-router-dom';
 import * as api from 'services/Api';
-import {
-  Poster,
-  WraperInfo,
-  WraperInfoFilm,
-  GanresFilm,
-  WraperAdditionalInformation,
-  Btn,
-  Wraper,
-  LinkFilmSInfo,
-  ListFilmInfo,
-} from './FilmInfo.styled';
+import { Wraper } from './FilmInfo.styled';
+import { Btn } from 'components/ua/Btn.styled';
+import { MoviesInfo } from 'components/MoviesInfo/MoviesInfo';
+import { AdditionalInformation } from 'components/AdditionalInformation/AdditionalInformation';
 
-export const FilmInfo = () => {
+const FilmInfo = () => {
   const { id } = useParams('');
   const [moviesInfo, setMoviesInfo] = useState([]);
   const location = useLocation();
@@ -43,37 +35,14 @@ export const FilmInfo = () => {
       <Wraper>
         {moviesInfo.poster_path && (
           <>
-            <WraperInfo>
-              <Poster src={img} alt="" />
-              <WraperInfoFilm>
-                <h2>{moviesInfo.original_title}</h2>
-                <p>Popularity:{moviesInfo.popularity}</p>
-                <h3>Overview</h3>
-                <p>{moviesInfo.overview}</p>
-                <h3>Genres</h3>
-                <p>
-                  {moviesInfo.genres.map(({ id, name }) => (
-                    <GanresFilm key={id}>{name}</GanresFilm>
-                  ))}
-                </p>
-              </WraperInfoFilm>
-            </WraperInfo>
-            <WraperAdditionalInformation>
-              <h3>Additional information</h3>
-              <ListFilmInfo>
-                <li>
-                  <LinkFilmSInfo to="cast">Cast</LinkFilmSInfo>
-                </li>
-                <li>
-                  <LinkFilmSInfo to="reviews">Reviews</LinkFilmSInfo>
-                </li>
-              </ListFilmInfo>
-            </WraperAdditionalInformation>
+            <MoviesInfo img={img} moviesInfo={moviesInfo} />
+            <AdditionalInformation />
             <Outlet />
           </>
         )}
       </Wraper>
-      <ToastContainer />
     </>
   );
 };
+
+export default FilmInfo;

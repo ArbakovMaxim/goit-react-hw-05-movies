@@ -1,12 +1,11 @@
 import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer } from 'react-toastify';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import * as api from 'services/Api';
-import { ListReviewsStyled } from './Reviews.styled';
+import { ListReviews } from 'components/ListReviews/ListReviews';
 
-export const Reviews = () => {
+const Reviews = () => {
   const [MoviesInfoAuthors, setMoviesInfoAuthors] = useState([]);
   const { id } = useParams('');
 
@@ -28,16 +27,10 @@ export const Reviews = () => {
           'Ни одна живая душа, не вснезошла до описания данного фильма....'
         </p>
       ) : (
-        <ListReviewsStyled>
-          {MoviesInfoAuthors.map(MoviesInfoAuthor => (
-            <li key={MoviesInfoAuthor.id}>
-              <h4>Author: {MoviesInfoAuthor.author}</h4>
-              <p>{MoviesInfoAuthor.content}</p>
-            </li>
-          ))}
-        </ListReviewsStyled>
+        <ListReviews MoviesInfoAuthors={MoviesInfoAuthors} />
       )}
-      <ToastContainer />
     </>
   );
 };
+
+export default Reviews;

@@ -29,7 +29,3 @@ export const HeaderList = styled.ul`
   list-style: none;
   display: flex;
 `;
-
-export const Main = styled.main`
-  padding: 12px;
-`;

@@ -1,10 +1,11 @@
-import { HeaderBox } from 'components/Header/Header';
-import { Main } from 'components/Header/Header.styled';
+import { HeaderBox } from 'Layout/Header/Header';
+
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Container } from './Layout.styled';
+import { Main } from './Main/Main.styled';
 
-export const Layout = () => {
+const Layout = () => {
   return (
     <Container>
       <HeaderBox />
@@ -16,3 +17,5 @@ export const Layout = () => {
     </Container>
   );
 };
+
+export default Layout;

@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 import * as api from 'services/Api';
 import { ListFilm } from 'components/ListFilm/ListFilm';
 
-export const Home = () => {
+const Home = () => {
   const [moviesTrend, setMoviesTrend] = useState([]);
   const location = useLocation();
 
@@ -27,3 +27,5 @@ export const Home = () => {
     </div>
   );
 };
+
+export default Home;

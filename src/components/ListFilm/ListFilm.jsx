@@ -2,7 +2,7 @@ import {
   ItemFilmStyled,
   ItemLinkFilmStyled,
   ListFilmStyled,
-} from './ListFilm.Styled';
+} from './ListFilm.styled';
 
 export const ListFilm = ({ movies, location }) => {
   return (
