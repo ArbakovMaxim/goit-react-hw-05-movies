@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Outlet, useLocation, useParams } from 'react-router-dom';
 import * as api from 'services/Api';
 import { Wraper } from './FilmInfo.styled';
-import { Btn } from 'components/ua/Btn.styled';
+import { Btn } from 'components/ui/Btn.styled';
 import { MoviesInfo } from 'components/MoviesInfo/MoviesInfo';
 import { AdditionalInformation } from 'components/AdditionalInformation/AdditionalInformation';
 
